@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bVirtualization", "bVirtualization\bVirtualization.csproj", "{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bVirtualization.Tests.Unit", "bVirtualization.Tests.Unit\bVirtualization.Tests.Unit.csproj", "{96693E1F-33CC-441E-89A1-596A17E5E575}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96693E1F-33CC-441E-89A1-596A17E5E575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96693E1F-33CC-441E-89A1-596A17E5E575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96693E1F-33CC-441E-89A1-596A17E5E575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96693E1F-33CC-441E-89A1-596A17E5E575}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E556F6C2-D037-4CDE-A675-ACEBDFA1587A}
+	EndGlobalSection
+EndGlobal
