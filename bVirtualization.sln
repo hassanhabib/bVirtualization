@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bVirtualization", "bVirtualization\bVirtualization.csproj", "{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bVirtualization", "bVirtualization\bVirtualization.csproj", "{B17C3DC0-8513-4BBD-93EA-53A1E346AF72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bVirtualization.Tests.Unit", "bVirtualization.Tests.Unit\bVirtualization.Tests.Unit.csproj", "{96693E1F-33CC-441E-89A1-596A17E5E575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bVirtualization.Tests.Unit", "bVirtualization.Tests.Unit\bVirtualization.Tests.Unit.csproj", "{96693E1F-33CC-441E-89A1-596A17E5E575}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F890C46B-4ACF-4D99-B194-B8695645A10D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

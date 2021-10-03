@@ -1,0 +1,6 @@
+# Rules in this file were initially inferred by Visual Studio IntelliCode from the D:\bVirtualization codebase based on best match to current usage at 4/10/2021
+# You can modify the rules from these initially generated values to suit your own policies
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+[*.cs]
+
+file_header_template = ---------------------------------------------------------------\nCopyright (c) Brian Parker & Hassan Habib All rights reserved.\nLicensed under the MIT License.\nSee License.txt in the project root for license information.\n---------------------------------------------------------------
