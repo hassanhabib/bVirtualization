@@ -4,13 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
 using bVirtualization.Brokers.DataSources;
 
 namespace bVirtualization.Services
 {
-    public class VirtualizationService<T> : IVirtualizationService<T>
+    public partial class VirtualizationService<T> : IVirtualizationService<T>
     {
         private readonly IDataSourceBroker<T> dataSourceBroker;
 
@@ -18,6 +17,6 @@ namespace bVirtualization.Services
             this.dataSourceBroker = dataSourceBroker;
 
         public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
-            this.dataSourceBroker.TakeSkip(startAt, pageSize);
+        TryCatch(() => this.dataSourceBroker.TakeSkip(startAt, pageSize));
     }
 }
