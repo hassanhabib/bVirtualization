@@ -17,7 +17,7 @@ namespace bVirtualization.Services
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
-        public IQueryable<T> LoadFirstPage(int startAt, int pageSize) =>
+        public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
             this.dataSourceBroker.TakeSkip(startAt, pageSize);
     }
 }

@@ -15,7 +15,7 @@ namespace bVirtualization.Brokers.DataSources
         public DataSourceBroker(IQueryable<T> dataSource) =>
             this.dataSource = dataSource;
 
-        public IQueryable<T> TakeSkip(int startAt, int pageSize) =>
-            this.dataSource.Skip(startAt).Take(pageSize);
+        public IQueryable<T> TakeSkip(uint startAt, uint pageSize) =>
+            this.dataSource.Skip((int)startAt).Take((int)pageSize);
     }
 }
