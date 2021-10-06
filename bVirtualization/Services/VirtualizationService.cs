@@ -7,6 +7,7 @@
 using System;
 using System.Linq;
 using bVirtualization.Brokers.DataSources;
+using bVirtualization.Models.Virtualizations.Exceptions;
 
 namespace bVirtualization.Services
 {
@@ -17,7 +18,18 @@ namespace bVirtualization.Services
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
-        public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
-            this.dataSourceBroker.TakeSkip(startAt, pageSize);
+        public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize)
+        {
+            try
+            {
+                return this.dataSourceBroker.TakeSkip(startAt, pageSize);
+            }
+            catch (Exception ex)
+            {
+                VirtualizationServiceException virtualizationServiceException =
+                    new VirtualizationServiceException(ex);
+                throw virtualizationServiceException;
+            }
+        }
     }
 }
