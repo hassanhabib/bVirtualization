@@ -27,7 +27,7 @@ namespace bVirtualization.Tests.Unit.Services
 
             IQueryable<object> returnedQueryable = randomQueryable;
             IQueryable<object> expectedQueryable = returnedQueryable;
- 
+
             this.dataSourceBrokerMock.Setup(source =>
                 source.TakeSkip(inputStartAt, inputPageSize))
                     .Returns(returnedQueryable);
@@ -35,7 +35,7 @@ namespace bVirtualization.Tests.Unit.Services
             // when
             IQueryable<object> actualQueryable =
                 this.virtualizationService.LoadFirstPage(
-                    inputStartAt, 
+                    inputStartAt,
                     inputPageSize);
 
             // then
