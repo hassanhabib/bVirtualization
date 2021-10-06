@@ -27,8 +27,8 @@ namespace bVirtualization.Tests.Unit.Services
                 dataSourceBroker: this.dataSourceBrokerMock.Object);
         }
 
-        private static int GetRandomNumber() =>
-            new IntRange(min: 0, max: 10).GetValue();
+        private static uint GetRandomPositiveNumber() =>
+            (uint) new IntRange(min: 0, max: 10).GetValue();
 
         public static IQueryable<object> CreateRandomQueryable() =>
             CreateQueryableFiller().Create().AsQueryable();

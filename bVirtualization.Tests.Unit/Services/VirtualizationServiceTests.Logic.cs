@@ -17,10 +17,10 @@ namespace bVirtualization.Tests.Unit.Services
         public void ShouldSkipAndTakeOnLoadFirstPageFromDataSource()
         {
             // given
-            int randomStartAt = GetRandomNumber();
-            int randomPageSize = GetRandomNumber();
-            int inputStartAt = randomStartAt;
-            int inputPageSize = randomPageSize;
+            uint randomStartAt = GetRandomPositiveNumber();
+            uint randomPageSize = GetRandomPositiveNumber();
+            uint inputStartAt = randomStartAt;
+            uint inputPageSize = randomPageSize;
 
             IQueryable<object> randomQueryable =
                 CreateRandomQueryable();

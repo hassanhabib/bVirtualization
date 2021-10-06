@@ -10,6 +10,6 @@ namespace bVirtualization.Services
 {
     public interface IVirtualizationService<T>
     {
-        IQueryable<T> LoadFirstPage(int startAt, int pageSize);
+        IQueryable<T> LoadFirstPage(uint startAt, uint pageSize);
     }
 }
