@@ -27,16 +27,18 @@ namespace bVirtualization.Services
             return this.dataSourceBroker.TakeSkip(startAt, pageSize);
         });
 
+        public IQueryable<T> RetrieveNextPage() =>
+        TryCatch(() =>
+        {
+            this.currentPosition += this.currentPageSize;
+
+            return this.dataSourceBroker.TakeSkip(currentPosition, currentPageSize);
+        });
+
         public uint GetCurrentPosition() =>
             this.currentPosition;
 
         public uint GetPageSize() =>
             this.currentPageSize;
-
-        public IQueryable<T> RetrieveNextPage()
-        {
-            this.currentPosition += this.currentPageSize;
-            return this.dataSourceBroker.TakeSkip(currentPosition, currentPageSize);
-        }
     }
 }

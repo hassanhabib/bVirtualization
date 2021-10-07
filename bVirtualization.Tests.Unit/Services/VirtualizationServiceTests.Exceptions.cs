@@ -61,11 +61,11 @@ namespace bVirtualization.Tests.Unit.Services
                     .Throws(serviceException);
 
             // when
-            Action takeSkipAction = () =>
+            Action retrieveNextPageAction = () =>
                 this.virtualizationService.RetrieveNextPage();
 
             // then
-            Assert.Throws<VirtualizationServiceException>(takeSkipAction);
+            Assert.Throws<VirtualizationServiceException>(retrieveNextPageAction);
 
             this.dataSourceBrokerMock.Verify(broker =>
                 broker.TakeSkip(It.IsAny<uint>(), It.IsAny<uint>()),
