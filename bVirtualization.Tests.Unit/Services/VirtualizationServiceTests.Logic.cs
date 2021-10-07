@@ -22,6 +22,7 @@ namespace bVirtualization.Tests.Unit.Services
             uint inputStartAt = randomStartAt;
             uint inputPageSize = randomPageSize;
             uint expectedPageSize = inputPageSize;
+            uint expectedPosition = inputStartAt;
 
             IQueryable<object> randomQueryable =
                 CreateRandomQueryable();
@@ -42,9 +43,13 @@ namespace bVirtualization.Tests.Unit.Services
             uint actualPageSize =
                 this.virtualizationService.GetPageSize();
 
+            uint actualPosition =
+                this.virtualizationService.GetCurrentPosition();
+
             // then
             actualQueryable.Should().BeEquivalentTo(expectedQueryable);
             actualPageSize.Should().Be(expectedPageSize);
+            actualPosition.Should().Be(expectedPosition);
 
             this.dataSourceBrokerMock.Verify(source =>
                 source.TakeSkip(inputStartAt, inputPageSize),

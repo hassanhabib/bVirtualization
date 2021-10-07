@@ -13,5 +13,6 @@ namespace bVirtualization.Services
     {
         IQueryable<T> LoadFirstPage(uint startAt, uint pageSize);
         uint GetPageSize();
+        uint GetCurrentPosition();
     }
 }

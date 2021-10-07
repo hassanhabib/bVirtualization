@@ -4,6 +4,7 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System;
 using System.Linq;
 using bVirtualization.Brokers.DataSources;
 
@@ -27,5 +28,10 @@ namespace bVirtualization.Services
 
             return this.dataSourceBroker.TakeSkip(startAt, pageSize);
         });
+
+        public uint GetCurrentPosition()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
