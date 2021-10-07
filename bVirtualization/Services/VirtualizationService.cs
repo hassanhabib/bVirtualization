@@ -4,7 +4,6 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
 using bVirtualization.Brokers.DataSources;
 
@@ -14,24 +13,24 @@ namespace bVirtualization.Services
     {
         private readonly IDataSourceBroker<T> dataSourceBroker;
         private uint currentPageSize;
+        private uint currentPosition;
 
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
-        public uint GetPageSize() =>
-            this.currentPageSize;
-
         public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
         TryCatch(() =>
         {
+            this.currentPosition = startAt;
             this.currentPageSize = pageSize;
 
             return this.dataSourceBroker.TakeSkip(startAt, pageSize);
         });
 
-        public uint GetCurrentPosition()
-        {
-            throw new NotImplementedException();
-        }
+        public uint GetCurrentPosition() =>
+            this.currentPosition;
+
+        public uint GetPageSize() =>
+            this.currentPageSize;
     }
 }

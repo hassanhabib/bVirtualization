@@ -4,7 +4,6 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
 
 namespace bVirtualization.Services
@@ -12,7 +11,7 @@ namespace bVirtualization.Services
     public interface IVirtualizationService<T>
     {
         IQueryable<T> LoadFirstPage(uint startAt, uint pageSize);
-        uint GetPageSize();
         uint GetCurrentPosition();
+        uint GetPageSize();
     }
 }
