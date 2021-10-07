@@ -48,7 +48,7 @@ namespace bVirtualization.Tests.Unit.Services
         }
 
         [Fact]
-        public void ShouldThrowServiceExceptionOnRetreiveNextPageIfServiceErrorOccurs()
+        public void ShouldThrowServiceExceptionOnRetrieveNextPageIfServiceErrorOccurs()
         {
             string randomMessage = GetRandomMessage();
             var serviceException = new Exception(randomMessage);

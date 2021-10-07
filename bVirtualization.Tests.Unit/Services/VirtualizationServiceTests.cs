@@ -36,10 +36,8 @@ namespace bVirtualization.Tests.Unit.Services
         public static IQueryable<object> CreateRandomQueryable() =>
             CreateQueryableFiller().Create().AsQueryable();
 
-        private static object CreateRandomObject()
-        {
-            return new MnemonicString().GetValue();
-        }
+        private static object CreateRandomObject() =>
+            new MnemonicString().GetValue();
 
         public static Filler<List<object>> CreateQueryableFiller()
         {
