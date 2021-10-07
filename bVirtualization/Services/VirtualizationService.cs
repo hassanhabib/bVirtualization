@@ -12,11 +12,33 @@ namespace bVirtualization.Services
     public partial class VirtualizationService<T> : IVirtualizationService<T>
     {
         private readonly IDataSourceBroker<T> dataSourceBroker;
+        private uint currentPageSize;
+        private uint currentPosition;
 
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
         public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
-        TryCatch(() => this.dataSourceBroker.TakeSkip(startAt, pageSize));
+        TryCatch(() =>
+        {
+            this.currentPosition = startAt;
+            this.currentPageSize = pageSize;
+
+            return this.dataSourceBroker.TakeSkip(startAt, pageSize);
+        });
+
+        public IQueryable<T> RetrieveNextPage() =>
+        TryCatch(() =>
+        {
+            this.currentPosition += this.currentPageSize;
+
+            return this.dataSourceBroker.TakeSkip(currentPosition, currentPageSize);
+        });
+
+        public uint GetCurrentPosition() =>
+            this.currentPosition;
+
+        public uint GetPageSize() =>
+            this.currentPageSize;
     }
 }

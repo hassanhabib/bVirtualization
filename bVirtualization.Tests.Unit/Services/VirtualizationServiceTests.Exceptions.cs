@@ -5,7 +5,9 @@
 // ---------------------------------------------------------------
 
 using System;
+using System.Linq;
 using bVirtualization.Models.Virtualizations.Exceptions;
+using FluentAssertions;
 using Moq;
 using Xunit;
 
@@ -37,6 +39,33 @@ namespace bVirtualization.Tests.Unit.Services
 
             // then
             Assert.Throws<VirtualizationServiceException>(takeSkipAction);
+
+            this.dataSourceBrokerMock.Verify(broker =>
+                broker.TakeSkip(It.IsAny<uint>(), It.IsAny<uint>()),
+                    Times.Once());
+
+            this.dataSourceBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public void ShouldThrowServiceExceptionOnRetreiveNextPageIfServiceErrorOccurs()
+        {
+            string randomMessage = GetRandomMessage();
+            var serviceException = new Exception(randomMessage);
+
+            var expectedVirtualizationServiceException =
+                new VirtualizationServiceException(serviceException);
+
+            this.dataSourceBrokerMock.Setup(broker =>
+                broker.TakeSkip(It.IsAny<uint>(), It.IsAny<uint>()))
+                    .Throws(serviceException);
+
+            // when
+            Action retrieveNextPageAction = () =>
+                this.virtualizationService.RetrieveNextPage();
+
+            // then
+            Assert.Throws<VirtualizationServiceException>(retrieveNextPageAction);
 
             this.dataSourceBrokerMock.Verify(broker =>
                 broker.TakeSkip(It.IsAny<uint>(), It.IsAny<uint>()),
