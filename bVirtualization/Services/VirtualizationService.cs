@@ -32,5 +32,10 @@ namespace bVirtualization.Services
 
         public uint GetPageSize() =>
             this.currentPageSize;
+
+        public IQueryable<T> RetrieveNextPage()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

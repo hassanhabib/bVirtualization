@@ -11,6 +11,7 @@ namespace bVirtualization.Services
     public interface IVirtualizationService<T>
     {
         IQueryable<T> LoadFirstPage(uint startAt, uint pageSize);
+        IQueryable<T> RetrieveNextPage();
         uint GetCurrentPosition();
         uint GetPageSize();
     }
