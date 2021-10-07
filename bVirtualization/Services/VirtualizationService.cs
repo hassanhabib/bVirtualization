@@ -12,9 +12,15 @@ namespace bVirtualization.Services
     public partial class VirtualizationService<T> : IVirtualizationService<T>
     {
         private readonly IDataSourceBroker<T> dataSourceBroker;
+        private uint currentPageSize;
 
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
+
+        public uint GetPageSize()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
         TryCatch(() => this.dataSourceBroker.TakeSkip(startAt, pageSize));
