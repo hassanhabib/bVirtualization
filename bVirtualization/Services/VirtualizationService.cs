@@ -17,12 +17,15 @@ namespace bVirtualization.Services
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
-        public uint GetPageSize()
-        {
-            throw new System.NotImplementedException();
-        }
+        public uint GetPageSize() =>
+            this.currentPageSize;
 
         public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
-        TryCatch(() => this.dataSourceBroker.TakeSkip(startAt, pageSize));
+        TryCatch(() =>
+        {
+            this.currentPageSize = pageSize;
+
+            return this.dataSourceBroker.TakeSkip(startAt, pageSize);
+        });
     }
 }
