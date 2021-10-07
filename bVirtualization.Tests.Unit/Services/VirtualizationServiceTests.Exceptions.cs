@@ -47,7 +47,6 @@ namespace bVirtualization.Tests.Unit.Services
             this.dataSourceBrokerMock.VerifyNoOtherCalls();
         }
 
-
         [Fact]
         public void ShouldThrowServiceExceptionOnRetreiveNextPageIfServiceErrorOccurs()
         {
@@ -73,8 +72,6 @@ namespace bVirtualization.Tests.Unit.Services
                     Times.Once());
 
             this.dataSourceBrokerMock.VerifyNoOtherCalls();
-
-
         }
     }
 }
