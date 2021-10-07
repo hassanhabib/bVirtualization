@@ -35,7 +35,8 @@ namespace bVirtualization.Services
 
         public IQueryable<T> RetrieveNextPage()
         {
-            throw new System.NotImplementedException();
+            this.currentPosition += this.currentPageSize;
+            return this.dataSourceBroker.TakeSkip(currentPosition, currentPageSize);
         }
     }
 }
