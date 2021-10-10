@@ -1,4 +1,5 @@
 [![.NET](https://github.com/hassanhabib/bVirtualization/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hassanhabib/bVirtualization/actions/workflows/dotnet.yml)
+[![The Standard - COMPLIANT](https://img.shields.io/badge/The_Standard-COMPLIANT-2ea44f)](https://github.com/hassanhabib/The-Standard)
 
 # bVirtualization
 This is a Blazor component for Virtualization that supports infinite scrolling with ANY type of data source, whether it's an API or Database or just simply a file on your computer or just in memory!
