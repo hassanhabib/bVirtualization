@@ -5,9 +5,7 @@
 // ---------------------------------------------------------------
 
 using System;
-using System.Linq;
 using bVirtualization.Models.Virtualizations.Exceptions;
-using FluentAssertions;
 using Moq;
 using Xunit;
 
