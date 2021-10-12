@@ -69,7 +69,7 @@ namespace bVirtualization.Tests.Unit.Services
             uint expectedStartAt = inputStartAt + inputPageSize;
             uint expectedCurrentPosition = expectedStartAt;
             uint expectedPageSize = inputPageSize;
-            
+
             IQueryable<object> retrievedNextPage =
                 CreateRandomQueryable();
 
