@@ -18,13 +18,7 @@ namespace bVirtualization.Views.Base
         public RenderFragment<T> ChildComponent { get; set; }
 
         [Parameter]
-        public int OverscanCount { get; set; }
-
-        [Parameter]
-        public int Index { get; set; }
-
-        [Parameter]
-        public int PageSize { get; set; }
+        public int OverscanCount { get; set; } = 3;
 
         [Parameter]
         public CallBackSourceDelegate<T> CallBackSource { get; set; }
