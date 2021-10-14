@@ -12,7 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bVirtualization.Infrastructure.Build", "bVirtualization.Infrastructure.Build\bVirtualization.Infrastructure.Build.csproj", "{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bVirtualization.Infrastructure.Build", "bVirtualization.Infrastructure.Build\bVirtualization.Infrastructure.Build.csproj", "{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWasmApp.Server", "ClientWasmApp\Server\ClientWasmApp.Server.csproj", "{1E47FE05-C930-4130-B236-6FC6A6D4B8B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWasmApp.Client", "ClientWasmApp\Client\ClientWasmApp.Client.csproj", "{2F0EF750-DAB4-4301-8ECF-5ACCF45A1ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWasmApp.Shared", "ClientWasmApp\Shared\ClientWasmApp.Shared.csproj", "{D3673996-EF60-41BB-8B8C-A7B77CF1C00E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +38,18 @@ Global
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E47FE05-C930-4130-B236-6FC6A6D4B8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E47FE05-C930-4130-B236-6FC6A6D4B8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E47FE05-C930-4130-B236-6FC6A6D4B8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E47FE05-C930-4130-B236-6FC6A6D4B8B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0EF750-DAB4-4301-8ECF-5ACCF45A1ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0EF750-DAB4-4301-8ECF-5ACCF45A1ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0EF750-DAB4-4301-8ECF-5ACCF45A1ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0EF750-DAB4-4301-8ECF-5ACCF45A1ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3673996-EF60-41BB-8B8C-A7B77CF1C00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3673996-EF60-41BB-8B8C-A7B77CF1C00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3673996-EF60-41BB-8B8C-A7B77CF1C00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3673996-EF60-41BB-8B8C-A7B77CF1C00E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

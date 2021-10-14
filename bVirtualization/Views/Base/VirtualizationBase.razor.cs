@@ -15,7 +15,7 @@ namespace bVirtualization.Views.Base
     public partial class VirtualizationBase<T> : ComponentBase
     {
         [Parameter]
-        public RenderFragment<T> ChildComponent { get; set; }
+        public RenderFragment<T> ChildContent { get; set; }
 
         [Parameter]
         public int OverscanCount { get; set; } = 3;

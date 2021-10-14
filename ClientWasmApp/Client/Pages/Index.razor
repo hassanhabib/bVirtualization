@@ -1,0 +1,17 @@
+﻿@page "/"
+@using bVirtualization.Views.Components
+@using ClientWasmApp.Shared
+
+<PageTitle>Index</PageTitle>
+
+<BVirtualizationComponent T=WeatherForecast
+                          DataSource=WeatherForecasts
+                          Context=forecast>
+
+    <div>@forecast.Date.ToShortDateString()</div>
+    <div>@forecast.TemperatureC</div>
+    <div>@forecast.TemperatureF</div>
+    <div>@forecast.Summary</div>
+
+</BVirtualizationComponent>
+
