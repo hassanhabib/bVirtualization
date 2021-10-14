@@ -18,16 +18,10 @@ namespace bVirtualization.Views.Base
         public RenderFragment<T> ChildComponent { get; set; }
 
         [Parameter]
-        public int OverscanCount { get; set; }
+        public int OverscanCount { get; set; } = 3;
 
         [Parameter]
-        public int Offset { get; set; }
-
-        [Parameter]
-        public int PageSize { get; set; }
-
-        [Parameter]
-        public Func<int, int, (IQueryable<T> DataSource, int TotalCount)> CallBackSource { get; set; }
+        public CallBackSourceDelegate<T> CallBackSource { get; set; }
 
         private async ValueTask<ItemsProviderResult<T>> GetItemsAsync(
             ItemsProviderRequest request)
@@ -37,4 +31,7 @@ namespace bVirtualization.Views.Base
             return new ItemsProviderResult<T>(data.DataSource, data.TotalCount);
         }
     }
+
+    public delegate (IQueryable<T> DataSource, int TotalCount)
+        CallBackSourceDelegate<T>(int startIndex, int count);
 }

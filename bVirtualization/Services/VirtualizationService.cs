@@ -32,7 +32,9 @@ namespace bVirtualization.Services
         {
             this.currentPosition += this.currentPageSize;
 
-            return this.dataSourceBroker.TakeSkip(currentPosition, currentPageSize);
+            return this.dataSourceBroker.TakeSkip(
+                this.currentPosition,
+                this.currentPageSize);
         });
 
         public uint GetCurrentPosition() =>
