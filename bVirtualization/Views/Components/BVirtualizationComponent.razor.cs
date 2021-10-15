@@ -7,6 +7,8 @@
 using System;
 using System.Linq;
 using bVirtualization.Models.BVirutalizationComponents;
+using bVirtualization.Services;
+using bVirtualization.Views.Base;
 using Microsoft.AspNetCore.Components;
 
 namespace bVirtualization.Views.Components
@@ -14,19 +16,20 @@ namespace bVirtualization.Views.Components
     public partial class BVirtualizationComponent<T> : ComponentBase
     {
         [Parameter]
-        //[EditorRequired]
         public RenderFragment<T> ChildContent { get; set; }
 
-        [Parameter]
-        //[EditorRequired]
-        public IQueryable<T> DataSource { get; set; }
+        [Inject]
+        public IVirtualizationService<T> VirtualizeService { get; set; }
 
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
+        public LabelBase Label { get; set; }
 
-        private (IQueryable<T> DataSource, int TotalCount) RetrieveData(int index, int quantity)
+        private (IQueryable<T> DataSource, int TotalCount) RetrieveData(
+            int index, 
+            int quantity)
         {
-            return (DataSource.Skip(index).Take(quantity), DataSource.Count());
+            throw new NotImplementedException();
         }
     }
 }
