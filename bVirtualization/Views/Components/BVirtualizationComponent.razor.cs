@@ -6,6 +6,7 @@
 
 using System;
 using System.Linq;
+using bVirtualization.Models.BVirutalizationComponents;
 using Microsoft.AspNetCore.Components;
 
 namespace bVirtualization.Views.Components
@@ -19,6 +20,9 @@ namespace bVirtualization.Views.Components
         [Parameter]
         //[EditorRequired]
         public IQueryable<T> DataSource { get; set; }
+
+        public BVirutalizationComponentState State { get; set; }
+        public string ErrorMessage { get; set; }
 
         private (IQueryable<T> DataSource, int TotalCount) RetrieveData(int index, int quantity)
         {
