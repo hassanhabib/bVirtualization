@@ -21,6 +21,12 @@ namespace bVirtualization.Views.Components
         [Inject]
         public IVirtualizationService<T> VirtualizeService { get; set; }
 
+        protected override void OnInitialized()
+        {
+            this.State = BVirutalizationComponentState.Content;
+            base.OnInitialized();
+        }
+
         public IQueryable<T> DataSource { get; set; }
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
@@ -30,7 +36,10 @@ namespace bVirtualization.Views.Components
             int index, 
             int quantity)
         {
-            throw new NotImplementedException();
+            var data = VirtualizeService.LoadFirstPage((uint)index, (uint)quantity);
+            var totalCount = data.Count();
+
+            return (data, totalCount);
         }
     }
 }

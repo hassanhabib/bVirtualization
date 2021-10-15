@@ -32,6 +32,6 @@ namespace bVirtualization.Views.Base
         }
     }
 
-    public delegate (IQueryable<T> DataSource, int TotalCount)
+    public delegate (IQueryable<T> DataSource, int TotalCount) 
         CallBackSourceDelegate<T>(int startIndex, int count);
 }
