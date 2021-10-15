@@ -21,6 +21,7 @@ namespace bVirtualization.Views.Components
         [Inject]
         public IVirtualizationService<T> VirtualizeService { get; set; }
 
+        public IQueryable<T> DataSource { get; set; }
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
         public LabelBase Label { get; set; }

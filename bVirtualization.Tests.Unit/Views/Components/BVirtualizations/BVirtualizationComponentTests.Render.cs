@@ -4,9 +4,11 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System.Linq;
 using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Views.Components;
 using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
@@ -30,6 +32,45 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             initialBVirtualizationComponent.ChildContent.Should().BeNull();
             initialBVirtualizationComponent.Label.Should().BeNull();
             initialBVirtualizationComponent.ErrorMessage.Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldRenderContent()
+        {
+            // given
+            BVirutalizationComponentState expectedState =
+                BVirutalizationComponentState.Content;
+
+            IQueryable<object> randomData =
+                CreateRandomQueryable();
+
+            IQueryable<object> retrievedData =
+                randomData;
+
+            IQueryable<object> expectedData =
+                retrievedData;
+
+            this.virtualizationServiceMock.Setup(service =>
+                service.RetrieveNextPage())
+                    .Returns(retrievedData);
+
+            // when
+            this.renderedComponent = 
+                RenderComponent<BVirtualizationComponent<object>>();
+
+            // then
+            this.renderedComponent.Instance.State.Should().Be(expectedState);
+
+            this.renderedComponent.Instance.DataSource.Should()
+                .BeEquivalentTo(expectedData);
+
+            this.virtualizationServiceMock.Verify(service =>
+                service.RetrieveNextPage(),
+                    Times.Once);
+
+            this.renderedComponent.Instance.ErrorMessage.Should().BeNull();
+            this.renderedComponent.Instance.Label.Should().BeNull();
+            this.virtualizationServiceMock.VerifyNoOtherCalls();
         }
     }
 }
