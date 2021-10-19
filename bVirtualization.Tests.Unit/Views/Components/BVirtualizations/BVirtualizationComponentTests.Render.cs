@@ -51,7 +51,7 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
                 retrievedData;
 
             this.virtualizationServiceMock.Setup(service =>
-                service.LoadFirstPage(It.IsAny<uint>(), It.IsAny<uint>()))
+                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()))
                     .Returns(retrievedData);
 
             // when
@@ -62,7 +62,7 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             this.renderedComponent.Instance.State.Should().Be(expectedState);
 
             this.virtualizationServiceMock.Verify(service =>
-                service.LoadFirstPage(It.IsAny<uint>(), It.IsAny<uint>()),
+                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()),
                     Times.Once);
 
             this.renderedComponent.Instance.ErrorMessage.Should().BeNull();
