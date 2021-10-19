@@ -10,6 +10,7 @@ using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Services;
 using bVirtualization.Views.Base;
 using Microsoft.AspNetCore.Components;
+using bVirtualization.Brokers.DataSources;
 
 namespace bVirtualization.Views.Components
 {
@@ -18,26 +19,35 @@ namespace bVirtualization.Views.Components
         [Parameter]
         public RenderFragment<T> ChildContent { get; set; }
 
-        [Inject]
-        public IVirtualizationService<T> VirtualizeService { get; set; }
+        [Parameter]
+        public IQueryable<T> DataSource {  get; set;}
 
-        protected override void OnInitialized()
-        {
-            this.State = BVirutalizationComponentState.Content;
-            base.OnInitialized();
-        }
-
-        public IQueryable<T> DataSource { get; set; }
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
         public LabelBase Label { get; set; }
+        private IDataSourceBroker<T> dataSourceBroker;
+        private IVirtualizationService<T> virtualizationService;
+
+        protected override void OnInitialized()
+        {
+            this.dataSourceBroker =
+                new DataSourceBroker<T>(this.DataSource);
+
+            this.virtualizationService =
+                new VirtualizationService<T>(this.dataSourceBroker);
+
+            this.State = BVirutalizationComponentState.Content;
+            base.OnInitialized();
+        }
 
         private (IQueryable<T> DataSource, int TotalCount) RetrieveData(
             int index, 
             int quantity)
         {
-            var data = VirtualizeService.LoadPage((uint)index, (uint)quantity);
-            var totalCount = data.Count();
+            IQueryable<T> data = this.virtualizationService
+                .LoadPage((uint)index, (uint)quantity);
+            
+            int totalCount = data.Count();
 
             return (data, totalCount);
         }

@@ -4,6 +4,7 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
 using Bunit;
 using bVirtualization.Models.BVirutalizationComponents;
@@ -30,7 +31,7 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 
             // then
             initialBVirtualizationComponent.State.Should().Be(expectedState);
-            initialBVirtualizationComponent.VirtualizeService.Should().BeNull();
+            initialBVirtualizationComponent.DataSource.Should().BeNull();
             initialBVirtualizationComponent.ChildContent.Should().BeNull();
             initialBVirtualizationComponent.Label.Should().BeNull();
             initialBVirtualizationComponent.ErrorMessage.Should().BeNull();
@@ -46,30 +47,32 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             IQueryable<object> randomData =
                 CreateRandomQueryable();
 
-            IQueryable<object> retrievedData =
+            IQueryable<object> inputDataSource =
                 randomData;
 
-            IQueryable<object> expectedData =
-                retrievedData;
+            IQueryable<object> expectedDataSource =
+                inputDataSource;
 
-            RenderFragment<object> inputChildContent = 
+            RenderFragment<object> inputChildContent =
                 CreateRenderFragment(typeof(SomeComponent<object>));
 
             RenderFragment<object> expectedChildContent =
                 inputChildContent;
 
-            ComponentParameter parameter =
+            var componentParameters = new ComponentParameter[]
+            {
                 ComponentParameter.CreateParameter(
                     nameof(BVirtualizationComponent<object>.ChildContent),
-                    inputChildContent);
-            
-            this.virtualizationServiceMock.Setup(service =>
-                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()))
-                    .Returns(retrievedData);
+                    inputChildContent),
+
+                ComponentParameter.CreateParameter(
+                    nameof(BVirtualizationComponent<object>.DataSource),
+                    inputDataSource)
+            };
 
             // when
-            this.renderedComponent = 
-                RenderComponent<BVirtualizationComponent<object>>(parameter);
+            this.renderedComponent =
+                RenderComponent<BVirtualizationComponent<object>>(componentParameters);
 
             // then
             this.renderedComponent.Instance.State
@@ -78,13 +81,17 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             this.renderedComponent.Instance.ChildContent
                 .Should().BeEquivalentTo(expectedChildContent);
 
-            this.virtualizationServiceMock.Verify(service =>
-                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()),
-                    Times.Once);
+            this.renderedComponent.Instance.DataSource.Should()
+                .BeEquivalentTo(expectedDataSource);
+
+            this.renderedComponent.FindComponents<SomeComponent<object>>()
+                .Count().Should().Be(expectedDataSource.Count());
+
+            var renderedComponents =
+                 this.renderedComponent.FindComponents<SomeComponent<object>>();
 
             this.renderedComponent.Instance.ErrorMessage.Should().BeNull();
             this.renderedComponent.Instance.Label.Should().BeNull();
-            this.virtualizationServiceMock.VerifyNoOtherCalls();
         }
     }
 }

@@ -19,17 +19,12 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 {
     public partial class BVirtualizationComponentTests : TestContext
     {
-        private readonly Mock<IVirtualizationService<object>> virtualizationServiceMock;
         private IRenderedComponent<BVirtualizationComponent<object>> renderedComponent;
+        private Mock<IQueryable<object>> dataSourceMock;
 
         public BVirtualizationComponentTests()
         {
-            this.virtualizationServiceMock =
-                new Mock<IVirtualizationService<object>>();
-
-            this.Services.AddTransient<IVirtualizationService<object>>(service =>
-                this.virtualizationServiceMock.Object);
-
+            this.dataSourceMock = new Mock<IQueryable<object>>();
             this.Services.AddOptions();
             this.JSInterop.Mode = JSRuntimeMode.Loose;
         }
