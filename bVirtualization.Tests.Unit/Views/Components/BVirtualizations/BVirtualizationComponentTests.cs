@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Tynamix.ObjectFiller;
 using bVirtualization.Views.Components;
+using Microsoft.AspNetCore.Components;
+using System;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 {
@@ -38,6 +40,13 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
         private static object CreateRandomObject() =>
             new MnemonicString().GetValue();
 
+        private static RenderFragment<object> CreateRenderFragment(Type type) =>
+        context => builder =>
+        {
+            builder.OpenComponent(0, type);
+            builder.CloseComponent();
+        };
+
         public static Filler<List<object>> CreateQueryableFiller()
         {
             var filler = new Filler<List<object>>();
@@ -48,4 +57,6 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             return filler;
         }
     }
+
+    public class SomeComponent<T> : ComponentBase { }
 }

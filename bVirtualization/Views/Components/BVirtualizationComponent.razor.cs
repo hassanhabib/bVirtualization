@@ -36,7 +36,7 @@ namespace bVirtualization.Views.Components
             int index, 
             int quantity)
         {
-            var data = VirtualizeService.LoadFirstPage((uint)index, (uint)quantity);
+            var data = VirtualizeService.LoadPage((uint)index, (uint)quantity);
             var totalCount = data.Count();
 
             return (data, totalCount);

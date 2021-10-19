@@ -1,8 +1,7 @@
 ﻿@typeparam T
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 
-<Virtualize TItem=T
-			OverscanCount=OverscanCount
+<Virtualize OverscanCount=OverscanCount
 			ItemsProvider=GetItemsAsync>
 	@ChildContent(context)
 </Virtualize>

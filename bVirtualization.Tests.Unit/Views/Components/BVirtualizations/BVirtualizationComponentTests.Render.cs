@@ -5,9 +5,11 @@
 // ---------------------------------------------------------------
 
 using System.Linq;
+using Bunit;
 using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Views.Components;
 using FluentAssertions;
+using Microsoft.AspNetCore.Components;
 using Moq;
 using Xunit;
 
@@ -50,16 +52,31 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             IQueryable<object> expectedData =
                 retrievedData;
 
+            RenderFragment<object> inputChildContent = 
+                CreateRenderFragment(typeof(SomeComponent<object>));
+
+            RenderFragment<object> expectedChildContent =
+                inputChildContent;
+
+            ComponentParameter parameter =
+                ComponentParameter.CreateParameter(
+                    nameof(BVirtualizationComponent<object>.ChildContent),
+                    inputChildContent);
+            
             this.virtualizationServiceMock.Setup(service =>
                 service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()))
                     .Returns(retrievedData);
 
             // when
             this.renderedComponent = 
-                RenderComponent<BVirtualizationComponent<object>>();
+                RenderComponent<BVirtualizationComponent<object>>(parameter);
 
             // then
-            this.renderedComponent.Instance.State.Should().Be(expectedState);
+            this.renderedComponent.Instance.State
+                .Should().Be(expectedState);
+
+            this.renderedComponent.Instance.ChildContent
+                .Should().BeEquivalentTo(expectedChildContent);
 
             this.virtualizationServiceMock.Verify(service =>
                 service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()),
