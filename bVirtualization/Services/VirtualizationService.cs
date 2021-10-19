@@ -18,7 +18,7 @@ namespace bVirtualization.Services
         public VirtualizationService(IDataSourceBroker<T> dataSourceBroker) =>
             this.dataSourceBroker = dataSourceBroker;
 
-        public IQueryable<T> LoadFirstPage(uint startAt, uint pageSize) =>
+        public IQueryable<T> LoadPage(uint startAt, uint pageSize) =>
         TryCatch(() =>
         {
             this.currentPosition = startAt;

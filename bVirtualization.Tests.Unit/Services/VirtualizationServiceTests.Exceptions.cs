@@ -31,7 +31,7 @@ namespace bVirtualization.Tests.Unit.Services
 
             // when
             Action takeSkipAction = () =>
-                this.virtualizationService.LoadFirstPage(
+                this.virtualizationService.LoadPage(
                     someStartAt,
                     somePageSize);
 

@@ -36,7 +36,7 @@ namespace bVirtualization.Tests.Unit.Services
 
             // when
             IQueryable<object> actualQueryable =
-                this.virtualizationService.LoadFirstPage(
+                this.virtualizationService.LoadPage(
                     inputStartAt,
                     inputPageSize);
 
@@ -81,7 +81,7 @@ namespace bVirtualization.Tests.Unit.Services
                     .Returns(retrievedNextPage);
 
             // when
-            this.virtualizationService.LoadFirstPage(
+            this.virtualizationService.LoadPage(
                 inputStartAt,
                 inputPageSize);
 
