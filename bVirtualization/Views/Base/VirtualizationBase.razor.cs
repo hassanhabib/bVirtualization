@@ -4,7 +4,6 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -32,6 +31,6 @@ namespace bVirtualization.Views.Base
         }
     }
 
-    public delegate (IQueryable<T> DataSource, int TotalCount) 
+    public delegate (IQueryable<T> DataSource, int TotalCount)
         CallBackSourceDelegate<T>(int startIndex, int count);
 }

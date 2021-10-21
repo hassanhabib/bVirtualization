@@ -4,13 +4,12 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
+using bVirtualization.Brokers.DataSources;
 using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Services;
 using bVirtualization.Views.Base;
 using Microsoft.AspNetCore.Components;
-using bVirtualization.Brokers.DataSources;
 
 namespace bVirtualization.Views.Components
 {
@@ -20,7 +19,7 @@ namespace bVirtualization.Views.Components
         public RenderFragment<T> ChildContent { get; set; }
 
         [Parameter]
-        public IQueryable<T> DataSource {  get; set;}
+        public IQueryable<T> DataSource { get; set; }
 
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
@@ -41,12 +40,12 @@ namespace bVirtualization.Views.Components
         }
 
         private (IQueryable<T> DataSource, int TotalCount) RetrieveData(
-            int index, 
+            int index,
             int quantity)
         {
             IQueryable<T> data = this.virtualizationService
                 .LoadPage((uint)index, (uint)quantity);
-            
+
             int totalCount = data.Count();
 
             return (data, totalCount);

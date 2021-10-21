@@ -4,16 +4,15 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
-using bVirtualization.Services;
+using bVirtualization.Views.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Tynamix.ObjectFiller;
-using bVirtualization.Views.Components;
-using Microsoft.AspNetCore.Components;
-using System;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 {
