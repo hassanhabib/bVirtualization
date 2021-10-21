@@ -20,13 +20,11 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
     public partial class BVirtualizationComponentTests : TestContext
     {
         private IRenderedComponent<BVirtualizationComponent<object>> renderedComponent;
-        private Mock<IVirtualizationService<object>> virtualizationServiceMock;
         private Mock<IQueryable<object>> dataSourceMock;
 
         public BVirtualizationComponentTests()
         {
             this.dataSourceMock = new Mock<IQueryable<object>>();
-            this.virtualizationServiceMock = new Mock<IVirtualizationService<object>>();
             this.Services.AddOptions();
             this.JSInterop.Mode = JSRuntimeMode.Loose;
         }

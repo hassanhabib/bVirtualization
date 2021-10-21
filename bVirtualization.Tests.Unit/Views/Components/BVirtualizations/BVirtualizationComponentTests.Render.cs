@@ -98,13 +98,10 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             BVirutalizationComponentState expectedState =
                 BVirutalizationComponentState.Error;
 
-            string randomMessage = GetRandomMessage();
-            string exceptionMessage = randomMessage;
-            string expectedErrorMessage = exceptionMessage;
-            var exception = new Exception(exceptionMessage);
+            string expectedErrorMessage =
+                "Virtualization service error ocurred, contact support.";
 
-            IQueryable<object> someData =
-               CreateRandomQueryable();
+            IQueryable<object> someData = null;
 
             RenderFragment<object> someChildContent =
                 CreateRenderFragment(typeof(SomeComponent<object>));
@@ -120,28 +117,15 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
                     someData)
             };
 
-            this.virtualizationServiceMock.Setup(service =>
-                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()))
-                    .Throws(exception);
-
             // when
             this.renderedComponent =
                 RenderComponent<BVirtualizationComponent<object>>(componentParameters);
-
-            this.renderedComponent.Instance.VirtualizationService =
-                this.virtualizationServiceMock.Object;
 
             // then
             this.renderedComponent.Instance.State.Should().Be(expectedState);
             this.renderedComponent.Instance.ErrorMessage.Should().Be(expectedErrorMessage);
             this.renderedComponent.Instance.Label.Should().NotBeNull();
             this.renderedComponent.Instance.Label.Value.Should().Be(expectedErrorMessage);
-
-            this.virtualizationServiceMock.Verify(service =>
-                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()),
-                    Times.Once);
-
-            this.virtualizationServiceMock.VerifyNoOtherCalls();
         }
     }
 }
