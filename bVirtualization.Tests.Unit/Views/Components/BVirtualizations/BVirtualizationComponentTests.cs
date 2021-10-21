@@ -47,7 +47,7 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             var filler = new Filler<List<object>>();
 
             filler.Setup()
-                .OnType<object>().Use(CreateRandomObject());
+                .OnType<object>().Use(() => CreateRandomObject());
 
             return filler;
         }

@@ -87,9 +87,6 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
             this.renderedComponent.FindComponents<SomeComponent<object>>()
                 .Count().Should().Be(expectedDataSource.Count());
 
-            var renderedComponents =
-                 this.renderedComponent.FindComponents<SomeComponent<object>>();
-
             this.renderedComponent.Instance.ErrorMessage.Should().BeNull();
             this.renderedComponent.Instance.Label.Should().BeNull();
         }
