@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Tynamix.ObjectFiller;
-using bVirtualization.Services;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 {
