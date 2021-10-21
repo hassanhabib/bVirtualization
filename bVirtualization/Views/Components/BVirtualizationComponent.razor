@@ -1,6 +1,17 @@
 ﻿@typeparam T
 @using bVirtualization.Views.Base
+@using PrettyBlazor
 
-<VirtualizationBase CallBackSource=RetrieveData>
-    @ChildContent(context)
-</VirtualizationBase>
+<Condition Evaluation=@IsStateContent>
+	<Match>
+		<VirtualizationBase CallBackSource=RetrieveData>
+			@ChildContent(context)
+		</VirtualizationBase>
+	</Match>
+</Condition>
+
+<Condition Evaluation=@IsStateError>
+	<Match>
+		<LabelBase @ref=Label Value=ErrorMessage />
+	</Match>
+</Condition>

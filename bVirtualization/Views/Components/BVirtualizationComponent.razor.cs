@@ -43,12 +43,30 @@ namespace bVirtualization.Views.Components
             int index,
             int quantity)
         {
-            IQueryable<T> data = this.VirtualizationService
-                .LoadPage((uint)index, (uint)quantity);
+            try
+            {
 
-            int totalCount = data.Count();
+                IQueryable<T> data = this.VirtualizationService
+                    .LoadPage((uint)index, (uint)quantity);
 
-            return (data, totalCount);
+                int totalCount = data.Count();
+
+                return (data, totalCount);
+
+            }
+            catch (System.Exception exception)
+            {
+                this.State = BVirutalizationComponentState.Error;
+                this.ErrorMessage = exception.Message;
+                InvokeAsync(StateHasChanged);
+                return default;
+            }
         }
+
+        public bool IsStateContent =>
+            this.State == BVirutalizationComponentState.Content;
+
+        public bool IsStateError =>
+            this.State == BVirutalizationComponentState.Error;
     }
 }
