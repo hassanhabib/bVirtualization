@@ -4,7 +4,6 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +14,7 @@ namespace bVirtualization.Views.Base
     public partial class VirtualizationBase<T> : ComponentBase
     {
         [Parameter]
-        public RenderFragment<T> ChildComponent { get; set; }
+        public RenderFragment<T> ChildContent { get; set; }
 
         [Parameter]
         public int OverscanCount { get; set; } = 3;
