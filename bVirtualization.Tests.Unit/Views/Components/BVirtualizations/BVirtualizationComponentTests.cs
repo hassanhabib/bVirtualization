@@ -13,17 +13,20 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Tynamix.ObjectFiller;
+using bVirtualization.Services;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 {
     public partial class BVirtualizationComponentTests : TestContext
     {
         private IRenderedComponent<BVirtualizationComponent<object>> renderedComponent;
+        private Mock<IVirtualizationService<object>> virtualizationServiceMock;
         private Mock<IQueryable<object>> dataSourceMock;
 
         public BVirtualizationComponentTests()
         {
             this.dataSourceMock = new Mock<IQueryable<object>>();
+            this.virtualizationServiceMock = new Mock<IVirtualizationService<object>>();
             this.Services.AddOptions();
             this.JSInterop.Mode = JSRuntimeMode.Loose;
         }
@@ -33,6 +36,12 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 
         private static object CreateRandomObject() =>
             new MnemonicString().GetValue();
+
+        private static string GetRandomMessage() =>
+            new MnemonicString(wordCount: GetRandomNumber()).GetValue();
+
+        private static int GetRandomNumber() =>
+            new IntRange(min: 2, max: 10).GetValue();
 
         private static RenderFragment<object> CreateRenderFragment(Type type) =>
         context => builder =>

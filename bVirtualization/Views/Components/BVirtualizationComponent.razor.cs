@@ -25,14 +25,14 @@ namespace bVirtualization.Views.Components
         public string ErrorMessage { get; set; }
         public LabelBase Label { get; set; }
         private IDataSourceBroker<T> dataSourceBroker;
-        private IVirtualizationService<T> virtualizationService;
+        public IVirtualizationService<T> VirtualizationService { get; set; }
 
         protected override void OnInitialized()
         {
             this.dataSourceBroker =
                 new DataSourceBroker<T>(this.DataSource);
 
-            this.virtualizationService =
+            this.VirtualizationService = this.VirtualizationService ??
                 new VirtualizationService<T>(this.dataSourceBroker);
 
             this.State = BVirutalizationComponentState.Content;
@@ -43,7 +43,7 @@ namespace bVirtualization.Views.Components
             int index,
             int quantity)
         {
-            IQueryable<T> data = this.virtualizationService
+            IQueryable<T> data = this.VirtualizationService
                 .LoadPage((uint)index, (uint)quantity);
 
             int totalCount = data.Count();

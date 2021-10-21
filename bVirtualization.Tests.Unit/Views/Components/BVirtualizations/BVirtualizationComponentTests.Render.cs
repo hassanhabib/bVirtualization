@@ -4,12 +4,14 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System;
 using System.Linq;
 using Bunit;
 using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Views.Components;
 using FluentAssertions;
 using Microsoft.AspNetCore.Components;
+using Moq;
 using Xunit;
 
 namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
@@ -87,6 +89,59 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
 
             this.renderedComponent.Instance.ErrorMessage.Should().BeNull();
             this.renderedComponent.Instance.Label.Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldRenderErrorWhenExceptionOccurs()
+        {
+            // given
+            BVirutalizationComponentState expectedState =
+                BVirutalizationComponentState.Error;
+
+            string randomMessage = GetRandomMessage();
+            string exceptionMessage = randomMessage;
+            string expectedErrorMessage = exceptionMessage;
+            var exception = new Exception(exceptionMessage);
+
+            IQueryable<object> someData =
+               CreateRandomQueryable();
+
+            RenderFragment<object> someChildContent =
+                CreateRenderFragment(typeof(SomeComponent<object>));
+
+            var componentParameters = new ComponentParameter[]
+            {
+                ComponentParameter.CreateParameter(
+                    nameof(BVirtualizationComponent<object>.ChildContent),
+                    someChildContent),
+
+                ComponentParameter.CreateParameter(
+                    nameof(BVirtualizationComponent<object>.DataSource),
+                    someData)
+            };
+
+            this.virtualizationServiceMock.Setup(service =>
+                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()))
+                    .Throws(exception);
+
+            // when
+            this.renderedComponent =
+                RenderComponent<BVirtualizationComponent<object>>(componentParameters);
+
+            this.renderedComponent.Instance.VirtualizationService =
+                this.virtualizationServiceMock.Object;
+
+            // then
+            this.renderedComponent.Instance.State.Should().Be(expectedState);
+            this.renderedComponent.Instance.ErrorMessage.Should().Be(expectedErrorMessage);
+            this.renderedComponent.Instance.Label.Should().NotBeNull();
+            this.renderedComponent.Instance.Label.Value.Should().Be(expectedErrorMessage);
+
+            this.virtualizationServiceMock.Verify(service =>
+                service.LoadPage(It.IsAny<uint>(), It.IsAny<uint>()),
+                    Times.Once);
+
+            this.virtualizationServiceMock.VerifyNoOtherCalls();
         }
     }
 }
