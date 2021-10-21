@@ -34,9 +34,6 @@ namespace bVirtualization.Tests.Unit.Views.Components.BVirtualizations
         private static object CreateRandomObject() =>
             new MnemonicString().GetValue();
 
-        private static string GetRandomMessage() =>
-            new MnemonicString(wordCount: GetRandomNumber()).GetValue();
-
         private static int GetRandomNumber() =>
             new IntRange(min: 2, max: 10).GetValue();
 
