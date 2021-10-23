@@ -4,7 +4,9 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using bVirtualization.Brokers.DataSources;
 using bVirtualization.Models.BVirutalizationComponents;
 using bVirtualization.Services;
@@ -20,6 +22,9 @@ namespace bVirtualization.Views.Components
 
         [Parameter]
         public IQueryable<T> DataSource { get; set; }
+
+        [Parameter]
+        public DataSourceAsyncFunction DataSourceAsyncDelegate { get; set; }
 
         public BVirutalizationComponentState State { get; set; }
         public string ErrorMessage { get; set; }
@@ -39,7 +44,7 @@ namespace bVirtualization.Views.Components
             base.OnInitialized();
         }
 
-        private (IQueryable<T> DataSource, int TotalCount) RetrieveData(
+        private async ValueTask<(IReadOnlyList<T> DataSource, int TotalCount)> RetrieveDataAsync(
             int index,
             int quantity)
         {
@@ -49,9 +54,12 @@ namespace bVirtualization.Views.Components
                 IQueryable<T> data = this.virtualizationService
                     .LoadPage((uint)index, (uint)quantity);
 
-                int totalCount = data.Count();
+                IReadOnlyList<T> dataList =
+                    await this.DataSourceAsyncDelegate(index, quantity);
 
-                return (data, totalCount);
+                int totalCount = dataList.Count();
+
+                return (dataList, totalCount);
 
             }
             catch (System.Exception exception)
@@ -68,5 +76,9 @@ namespace bVirtualization.Views.Components
 
         public bool IsStateError =>
             this.State == BVirutalizationComponentState.Error;
+
+        public delegate ValueTask<IReadOnlyList<T>> DataSourceAsyncFunction(
+            int startIndex,
+            int totalCount);
     }
 }

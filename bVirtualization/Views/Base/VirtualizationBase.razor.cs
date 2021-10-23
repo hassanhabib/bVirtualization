@@ -4,6 +4,7 @@
 // See License.txt in the project root for license information.
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -25,12 +26,12 @@ namespace bVirtualization.Views.Base
         private async ValueTask<ItemsProviderResult<T>> GetItemsAsync(
             ItemsProviderRequest request)
         {
-            var data = CallBackSource.Invoke(request.StartIndex, request.Count);
+            var data = await CallBackSource.Invoke(request.StartIndex, request.Count);
 
             return new ItemsProviderResult<T>(data.DataSource, data.TotalCount);
         }
     }
 
-    public delegate (IQueryable<T> DataSource, int TotalCount)
+    public delegate ValueTask<(IReadOnlyList<T> DataSource, int TotalCount)>
         CallBackSourceDelegate<T>(int startIndex, int count);
 }
