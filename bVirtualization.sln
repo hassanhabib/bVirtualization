@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bVirtualization.Infrastructure.Build", "bVirtualization.Infrastructure.Build\bVirtualization.Infrastructure.Build.csproj", "{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{070B824B-74FA-45EE-9D32-670D38FA3EF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463FC4B3-ACD9-4E2F-9D6B-7A6369685364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070B824B-74FA-45EE-9D32-670D38FA3EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070B824B-74FA-45EE-9D32-670D38FA3EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070B824B-74FA-45EE-9D32-670D38FA3EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070B824B-74FA-45EE-9D32-670D38FA3EF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

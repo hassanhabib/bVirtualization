@@ -14,7 +14,37 @@ namespace bVirtualization.Pages
 {
     public partial class DeleteMePage
     {
+        public ValueTask<(IReadOnlyList<Student>, int)> RetrieveStudentsAsync(int location, int count)
+        {
+            List<Student> students = new List<Student>
+        {
+            new Student
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Hassan"
+            },
+            new Student
+            {
+                   Id = Guid.NewGuid(),
+                FirstName = "Brian"
+            },
+            new Student
+            {
+                   Id = Guid.NewGuid(),
+                FirstName = "Josh"
+            },
+            new Student
+            {
+                   Id = Guid.NewGuid(),
+                FirstName = "Robert"
+            }
+        };
+
+            return ValueTask.FromResult(((IReadOnlyList<Student>)students, students.Count));
+        }
     }
+
+    
 
     public class Student
     {

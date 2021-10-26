@@ -34,11 +34,11 @@ namespace bVirtualization.Views.Components
 
         protected override void OnInitialized()
         {
-            this.dataSourceBroker =
-                new DataSourceBroker<T>(this.DataSource);
+            //this.dataSourceBroker =
+            //    new DataSourceBroker<T>(this.DataSource);
 
-            this.virtualizationService =
-                new VirtualizationService<T>(this.dataSourceBroker);
+            //this.virtualizationService =
+            //    new VirtualizationService<T>(this.dataSourceBroker);
 
             this.State = BVirutalizationComponentState.Content;
             base.OnInitialized();
@@ -51,15 +51,15 @@ namespace bVirtualization.Views.Components
             try
             {
 
-                IQueryable<T> data = this.virtualizationService
-                    .LoadPage((uint)index, (uint)quantity);
+                //IQueryable<T> data = this.virtualizationService
+                //    .LoadPage((uint)index, (uint)quantity);
 
-                IReadOnlyList<T> dataList =
+                var dataList =
                     await this.DataSourceAsyncDelegate(index, quantity);
 
-                int totalCount = dataList.Count();
+                int totalCount = dataList.Item2;
 
-                return (dataList, totalCount);
+                return (dataList.Item1, totalCount);
 
             }
             catch (System.Exception exception)
@@ -77,7 +77,7 @@ namespace bVirtualization.Views.Components
         public bool IsStateError =>
             this.State == BVirutalizationComponentState.Error;
 
-        public delegate ValueTask<IReadOnlyList<T>> DataSourceAsyncFunction(
+        public delegate ValueTask<(IReadOnlyList<T>, int)> DataSourceAsyncFunction(
             int startIndex,
             int totalCount);
     }
